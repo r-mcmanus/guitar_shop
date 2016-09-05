@@ -14,28 +14,14 @@ function sendEmail($order_id) {
     set_time_limit(0);
     
     $destination = $_SESSION['user']['emailAddress'];
-    
-    // call view_order from account/index.php???
+    $customer_name = $_SESSION['user']['firstName'] . ' ' .
+                     $_SESSION['user']['lastName'];
 
     ob_start();                      // start capturing output
-    include('order_details.php');   // execute the file
+    include('message.php');   // execute the file
     $messageHTML = ob_get_contents();    // get the contents from the buffer
     ob_end_clean();  
     
-//    $messageHTML = '<html>
-//    <head>
-//    <title>HTML email</title>
-//    </head>
-//    <body>
-//    <p>Hello ' . $customer_name . ',
-//    <p>Thank you for shopping with Guitar Shop. Your order will be shipped soon.</p>
-//        
-//    ' . include 'order_details.php'; '
-//        
-//    </body>
-//    </html>
-//    
-//    ';
 
     $message =  ' This is information that will not be HTML friendly for Emails that do not support HTML';
 
@@ -60,11 +46,11 @@ function sendEmail($order_id) {
     $email->SingleTo  = true;	// true allows that only one person will receive an email per array group
     $email->From      = 'guitarshop2016@gmail.com'; //Will need to be modified – identifies email of sender
     $email->FromName  = 'Guitar Shop'; //Will need to be modified – identifies email of sender
-    $email->Subject   = 'Order Confirmation'; // appears in subject of email
+    $email->Subject   = 'Order Confirmation #' . $order_id; // appears in subject of email
     $email->Body      = $messageHTML ;  // the body will interpret HTML - $messageHTML identified above
     $email->AltBody = $message;            // the AltBody will not interpret HTML - $message identified above
     $destination_email_address = $destination; // Destination address
-    $destination_user_name = 'XXXXXXXXXXXX'; // Destination name
+    $destination_user_name = $customer_name; // Destination name
 
     // $email->AddAddress( 'xxxx@xxxx.xxx' );
 
