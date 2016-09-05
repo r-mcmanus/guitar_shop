@@ -115,8 +115,8 @@ switch ($action) {
             add_order_item($order_id, $product_id,
                            $item_price, $discount, $quantity);
         }
-        clear_cart();
         sendEmail($order_id);
+        clear_cart();
         redirect('../account?action=view_order&order_id=' . $order_id);
         break;
     default:
