@@ -6,7 +6,7 @@ require_once('model/address_db.php');
 require_once('model/order_db.php');
 require_once('model/product_db.php');
 
-function sendEmail($order_id) {
+function send_email($order_id) {
 
     // replace XXXXX with appropriate information
     require_once('class.PHPMailer.php');
