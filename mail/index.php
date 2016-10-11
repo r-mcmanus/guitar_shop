@@ -37,7 +37,7 @@ function send_email($order_id) {
     $email->SMTPSecure = 'tls';            // ssl is most recent but may need tls 
     // $email->SMTPSecure = 'ssl';    
     $email->Username   = "guitarshop2016@gmail.com"; 
-    $email->Password   = "xxxxxxxxxxxx";             // This is not the actual password of the account
+    $email->Password   = "yz6N0bgk3mX0";             // This is not the actual password of the account
     $email->SetFrom('guitarshop2016@gmail.com', 'Guitar Shop'); 
     // $email->MsgHTML($message);
     $email->SingleTo  = true;	// true allows that only one person will receive an email per array group
